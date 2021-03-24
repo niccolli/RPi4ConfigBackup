@@ -11,6 +11,10 @@ smbでTime Capsuleを実装するための設定。
 
 Mediumの投稿でSMBの動作までは動いたが、Time Machineだけが動かない。SMBがGuestでも書き込めるようchmod 777も実行し、その後Redditの設定も追加したら動いた。Redditの内容も反映済みのファイルが[smb.conf](./smb.conf)なので、SMBが動いていれば/etc/samba/smb.confと置き換えればよい。
 
+### Avahi
+
+MacがTime Capsuleだと理解できるよう、Avahiに設定を追加する。[samba.service](./samba.service)を /etc/avahi/services/samba.service として保存する。
+
 ### HDD
 
 - ext4 (HFS+でなくても動いた)
