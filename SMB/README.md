@@ -18,3 +18,26 @@ MacがTime Capsuleだと理解できるよう、Avahiに設定を追加する。
 ### HDD
 
 - ext4 (HFS+でなくても動いた)
+
+## 手順
+
+```
+$ sudo apt-get install samba avahi-daemon
+$ ls -lha /dev/disk/by-uuid                # Time Capsule用HDDのUUIDを確認
+$ sudo vi /etc/fstab                       # fstabにUUIDを記載。オプションはリポジトリ内のfstabを参考に。
+$ sudo adduser timemachine                 # パスワードはわかるもの、アカウント情報は空白でよい。
+$ sudo smbpasswd -a timemachine            # SMBパスワードの設定
+$ sudo mkdir /mnt/timemachine
+$ sudo chown -R timemachine: /mnt/timemachine
+$ sudo mv smb.conf /etc/samba/smb.conf
+$ sudo service smbd reload
+$ sudo mv samba.service /etc/avahi/services/samba.service
+$ sudo service avahi-daemon restart
+```
+
+USB HDDを引き継いだ場合、Macでバックアップ実行時にエラーが出ることがある。13の場合、コンソールでPermission Deniedだとわかるので、Time Machineのディレクトリがnobody/nogroupになっていないか確認する。なっていれば、下記コマンドでtimemachineに変更する。
+
+```
+$ sudo chown -R timemachine /mnt/timemachine/HoneyCat.sparsebundle/
+$ sudo chgrp -R timemachine /mnt/timemachine/HoneyCat.sparsebundle/
+```

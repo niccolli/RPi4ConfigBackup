@@ -1,0 +1,3 @@
+LABEL=writable	/	 ext4	defaults	0 0
+LABEL=system-boot       /boot/firmware  vfat    defaults        0       1
+UUID=2880cb36-ed83-43b3-bfab-319f07813eb7 /mnt/timemachine ext4 sync,noexec,nodev,noatime,nodiratime 0 0
