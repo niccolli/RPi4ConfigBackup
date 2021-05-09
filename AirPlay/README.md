@@ -11,3 +11,14 @@ iPhone・Macから音声データを受信して、Raspberry Piのイヤホン�
 上記投稿ではshairport-syncを自前でビルドしているが、aptでインストールできる(OSのリポジトリにある)もので問題ない。
 
 [shairport-sync.conf](./shairport-sync.conf)を/etc/shairport-sync.confにコピーする。イヤホン端子から出すならば general / name の箇所(iPhone等で表示される名前)のみ適宜変更すればよい。
+
+## 手順
+
+```
+$ sudo apt-get install shairport-sync
+$ sudo mv shairport-sync.conf /etc/shairport-sync.conf
+$ sudo systemctl enable shairport-sync
+$ sudo systemctl start shairport-sync
+```
+
+Macで表示名が反映されていない場合は、Raspberry Piを再起動する。サービス再起動でもよいかもしれない(未確認)。
