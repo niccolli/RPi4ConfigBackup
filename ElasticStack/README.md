@@ -21,3 +21,21 @@ $ sudo mkdir /etc/systemd/system/elasticsearch.service.d
 $ echo -e "[Service]\nTimeoutStartSec=180" | sudo tee /etc/systemd/system/elasticsearch.service.d/startup-timeout.conf
 $ sudo systemctl daemon-reload
 ```
+
+## Kibana
+
+### インストール
+
+リポジトリ設定はElasticsearchで対応済みなので不要
+
+```console
+$ sudo apt-get install kibana
+$ sudo cp kibana.yml /etc/kibana/kibana.yml
+```
+
+## 起動設定
+
+```console
+$ sudo systemctl enable elasticsearch
+$ sudo systemctl enable kibana
+```
